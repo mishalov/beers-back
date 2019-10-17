@@ -1,0 +1,44 @@
+{
+  "connection": "default",
+  "collectionName": "beers",
+  "info": {
+    "name": "beer",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "required": true,
+      "type": "string"
+    },
+    "style": {
+      "required": true,
+      "default": "",
+      "type": "string"
+    },
+    "IBU": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ABV": {
+      "type": "float"
+    },
+    "OG": {
+      "type": "float"
+    },
+    "price": {
+      "type": "float"
+    },
+    "photo": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    }
+  }
+}
