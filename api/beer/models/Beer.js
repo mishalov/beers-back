@@ -1,4 +1,5 @@
-'use strict';
+const { exec } = require("child_process");
+("use strict");
 
 /**
  * Lifecycle callbacks for the `Beer` model.
@@ -11,7 +12,21 @@ module.exports = {
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
-  // afterSave: async (model, response, options) => {},
+  afterSave: async (model, response, options) => {
+    exec(
+      "cd /home/evgenii/beer-front/ && npx gatsby build",
+      (err, stdout, stderr) => {
+        if (err) {
+          console.error("HOOK FAILED", err.message);
+          return;
+        }
+
+        // the *entire* stdout and stderr (buffered)
+        console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
+      }
+    );
+  }
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -20,7 +35,7 @@ module.exports = {
   // After fetching a value.
   // Fired after a `fetch` operation.
   // afterFetch: async (model, response, options) => {},
-  
+
   // Before fetching all values.
   // Fired before a `fetchAll` operation.
   // beforeFetchAll: async (model, columns, options) => {},
