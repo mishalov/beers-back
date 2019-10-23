@@ -4,7 +4,7 @@ const { exec } = require("child_process");
 /**
  * Lifecycle callbacks for the `Beer` model.
  */
-
+strapi.config;
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
@@ -14,7 +14,7 @@ module.exports = {
   // Fired after an `insert` or `update` query.
   afterSave: async (model, response, options) => {
     exec(
-      "cd /home/evgenii/beer-front/ && npx gatsby build",
+      `cd ${strapi.config.currentEnvironment.gatsbyPath} && npx gatsby build`,
       (err, stdout, stderr) => {
         if (err) {
           console.error("HOOK FAILED", err.message);
